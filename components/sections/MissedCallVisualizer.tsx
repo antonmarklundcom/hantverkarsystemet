@@ -58,7 +58,7 @@ export function MissedCallVisualizer({ caption }: { caption: string }) {
       <div className="rounded-[2rem] border-4 border-neutral-800 bg-white p-4 shadow-lg">
         <div className="flex min-h-40 flex-col justify-end gap-2">
           {stage === "idle" ? (
-            <p className="text-center text-sm text-neutral-400">
+            <p className="text-center text-sm text-neutral-600">
               Missat samtal från kund...
             </p>
           ) : null}
@@ -72,7 +72,7 @@ export function MissedCallVisualizer({ caption }: { caption: string }) {
               <p className="text-center text-sm font-medium text-red-600">
                 📞 Missat samtal
               </p>
-              <p className="ml-auto rounded-2xl rounded-br-sm bg-neutral-100 px-3 py-2 text-sm text-neutral-500">
+              <p className="ml-auto rounded-2xl rounded-br-sm bg-neutral-100 px-3 py-2 text-sm text-neutral-600">
                 skriver...
               </p>
             </>
@@ -89,7 +89,7 @@ export function MissedCallVisualizer({ caption }: { caption: string }) {
           ) : null}
         </div>
       </div>
-      <p className="mt-3 text-center text-sm text-neutral-500">{caption}</p>
+      <p className="mt-3 text-center text-sm text-neutral-600">{caption}</p>
     </div>
   );
 }

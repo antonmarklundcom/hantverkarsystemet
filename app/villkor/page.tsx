@@ -5,6 +5,7 @@ import { DraftNotice } from "@/components/ui/DraftNotice";
 export const metadata: Metadata = {
   title: "Villkor",
   description: "Villkor för Hantverkarsystemet, inklusive pris och bindningstid.",
+  alternates: { canonical: "/villkor" },
 };
 
 export default function VillkorPage() {

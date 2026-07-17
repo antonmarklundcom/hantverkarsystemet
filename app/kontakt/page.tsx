@@ -6,6 +6,7 @@ import { PhoneLink } from "@/components/ui/PhoneLink";
 export const metadata: Metadata = {
   title: "Kontakt",
   description: "Ring oss eller lämna dina uppgifter så hör vi av oss.",
+  alternates: { canonical: "/kontakt" },
 };
 
 export default function KontaktPage() {

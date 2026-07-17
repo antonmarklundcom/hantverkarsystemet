@@ -82,7 +82,7 @@ export function LostIncomeCalculator() {
             </p>
           </div>
 
-          <p className="mt-4 text-center text-sm text-neutral-500">
+          <p className="mt-4 text-center text-sm text-neutral-600">
             {copy.calculator.conversionNote}
           </p>
         </div>

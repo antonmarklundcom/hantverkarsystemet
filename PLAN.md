@@ -298,3 +298,34 @@ GHL/registrar), Phase 1 (2–3 Sonnet sessions), Phase 2 (1), Phase 3 (1),
 Phase 4 (1 + ongoing owner outreach). Critical path item outside code:
 **GHL demo number provisioning** — start it first, everything else can
 proceed in parallel.
+
+## 11. Progress log (Sonnet 5)
+
+- **Phase 1 (core build): done.** Next.js 16 scaffold (App Router, TS,
+  Tailwind v4, `output: standalone`), full home page in the fixed section
+  order, `/sa-funkar-det`, `/kontakt`, `/integritetspolicy`, `/villkor`,
+  `/api/lead` → GHL proxy, sitemap/robots/JSON-LD. Draft Swedish copy deck
+  written in `content/copy.sv.ts` / `content/faq.sv.ts` — **needs owner
+  sign-off**, including the calculator's 1-in-3 conversion assumption
+  (open question §9.3).
+- **Phase 2 (SEO/content depth): done**, minus items that need real owner
+  data. Added canonical URLs per route, OpenGraph/Twitter metadata, and a
+  code-generated OG image (`app/opengraph-image.tsx`, no stock photography).
+  `/sa-funkar-det` depth content was written directly in Phase 1.
+- **Phase 3 (performance/polish): done for what's measurable pre-launch.**
+  Fixed a color-contrast a11y issue (borderline grays bumped to
+  `neutral-600`) and a heading-hierarchy gap (benefit cards had `h3`s with
+  no parent `h2`). Verified with a real Lighthouse run (mobile, simulated
+  throttling) against the local production build:
+  **Performance 99, Accessibility 100, SEO 100 — LCP 1.7s, CLS 0, TBT
+  90ms** — comfortably inside the LCP <2.0s / CLS <0.05 budget. Note for
+  the record: raw first-load JS is ~190KB gzipped, mostly React 19 +
+  Next.js runtime rather than app code (three small client islands:
+  `LeadForm`, `LostIncomeCalculator`, `MissedCallVisualizer`) — Lighthouse
+  scores it well on real timing metrics, but it's above the plan's
+  original informal 110KB gzip reference point. Not re-architected, since
+  actual timing metrics pass; flagging in case a stricter budget matters
+  later. Real-device / real-network verification on a mid-range phone is
+  still outstanding (this environment has no physical device).
+- **Phase 4 (launch): blocked**, as expected, on GHL number/webhook,
+  domain registration, and legal details (§9).

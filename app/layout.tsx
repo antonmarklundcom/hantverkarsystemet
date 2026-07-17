@@ -5,14 +5,31 @@ import { Footer } from "@/components/layout/Footer";
 import { env } from "@/lib/env";
 import { organizationJsonLd } from "@/lib/jsonld";
 
+const defaultDescription =
+  "Automatiskt SMS-svar när du missar samtal, fler Google-recensioner utan tjat, och en snabb hemsida. 2 995 kr/mån, allt ingår.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
     default: "Hantverkarsystemet — missa aldrig ett samtal igen",
     template: "%s | Hantverkarsystemet",
   },
-  description:
-    "Automatiskt SMS-svar när du missar samtal, fler Google-recensioner utan tjat, och en snabb hemsida. 2 995 kr/mån, allt ingår.",
+  description: defaultDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    siteName: "Hantverkarsystemet",
+    title: "Hantverkarsystemet — missa aldrig ett samtal igen",
+    description: defaultDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hantverkarsystemet — missa aldrig ett samtal igen",
+    description: defaultDescription,
+  },
 };
 
 export default function RootLayout({

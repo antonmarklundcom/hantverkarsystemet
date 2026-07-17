@@ -12,11 +12,11 @@ export function Pricing() {
         <div className="mx-auto max-w-md rounded-3xl border-2 border-brand bg-white p-8 text-center shadow-sm">
           <p className="text-5xl font-extrabold text-neutral-900">
             {copy.pricing.price}
-            <span className="text-xl font-medium text-neutral-500">
+            <span className="text-xl font-medium text-neutral-600">
               {copy.pricing.priceSuffix}
             </span>
           </p>
-          <p className="mt-2 text-sm text-neutral-500">
+          <p className="mt-2 text-sm text-neutral-600">
             {copy.pricing.bindingNote}
           </p>
 

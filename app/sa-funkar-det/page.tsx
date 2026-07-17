@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Så funkar det",
   description:
     "Så här sätter vi upp automatiskt SMS-svar, recensionsinsamling och din hemsida — steg för steg.",
+  alternates: { canonical: "/sa-funkar-det" },
 };
 
 const steps = [

@@ -5,6 +5,7 @@ import { DraftNotice } from "@/components/ui/DraftNotice";
 export const metadata: Metadata = {
   title: "Integritetspolicy",
   description: "Så hanterar vi dina personuppgifter.",
+  alternates: { canonical: "/integritetspolicy" },
 };
 
 export default function IntegritetspolicyPage() {

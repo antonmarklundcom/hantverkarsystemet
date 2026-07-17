@@ -5,6 +5,7 @@ export function BenefitCards() {
   return (
     <section className="bg-neutral-50 py-14 sm:py-20">
       <Container className="max-w-5xl">
+        <h2 className="sr-only">Det här ingår</h2>
         <div className="grid gap-6 sm:grid-cols-3">
           {copy.benefits.map((benefit) => (
             <div

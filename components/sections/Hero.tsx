@@ -19,7 +19,7 @@ export function Hero() {
         <div className="mx-auto mt-8 max-w-md">
           <LeadForm sourceSection="hero" />
         </div>
-        <p className="mt-4 text-sm text-neutral-500">
+        <p className="mt-4 text-sm text-neutral-600">
           {copy.hero.ctaSecondaryLabel} <PhoneLink className="text-brand" />
         </p>
       </Container>
