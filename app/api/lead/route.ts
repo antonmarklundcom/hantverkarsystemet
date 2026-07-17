@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { env } from "@/lib/env";
-
-const NAME_MAX_LENGTH = 100;
-const PHONE_MAX_LENGTH = 20;
-const SOURCE_MAX_LENGTH = 50;
-// Swedish mobile/landline numbers, with or without +46 / leading 0, spaces allowed.
-const PHONE_PATTERN = /^(\+46|0)[\s\-]?[1-9][\d\s\-]{6,17}$/;
+import { validateLeadPayload } from "@/lib/leadValidation";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
@@ -38,43 +33,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Ogiltig förfrågan." }, { status: 400 });
   }
 
-  if (typeof body !== "object" || body === null) {
-    return NextResponse.json({ error: "Ogiltig förfrågan." }, { status: 400 });
+  const validation = validateLeadPayload(body);
+
+  if (!validation.ok) {
+    return NextResponse.json({ error: validation.error }, { status: 400 });
   }
 
-  const { namn, telefon, sourceSection, foretagswebbplats } = body as Record<
-    string,
-    unknown
-  >;
-
   // Server-side honeypot check, in case a bot bypasses the client form.
-  if (typeof foretagswebbplats === "string" && foretagswebbplats.length > 0) {
+  if (validation.honeypotTriggered) {
     return NextResponse.json({ ok: true });
   }
 
-  if (
-    typeof namn !== "string" ||
-    namn.trim().length < 2 ||
-    namn.length > NAME_MAX_LENGTH
-  ) {
-    return NextResponse.json({ error: "Ange ditt namn." }, { status: 400 });
-  }
-
-  if (
-    typeof telefon !== "string" ||
-    telefon.length > PHONE_MAX_LENGTH ||
-    !PHONE_PATTERN.test(telefon.trim())
-  ) {
-    return NextResponse.json(
-      { error: "Ange ett giltigt mobilnummer." },
-      { status: 400 },
-    );
-  }
-
-  const source =
-    typeof sourceSection === "string"
-      ? sourceSection.slice(0, SOURCE_MAX_LENGTH)
-      : "unknown";
+  const { namn, telefon, source } = validation;
 
   if (!env.ghlLeadWebhookUrl) {
     console.error("GHL_LEAD_WEBHOOK_URL is not configured");
@@ -92,8 +62,8 @@ export async function POST(request: NextRequest) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        namn: namn.trim(),
-        telefon: telefon.trim(),
+        namn,
+        telefon,
         källa: source,
         skickat: new Date().toISOString(),
       }),
